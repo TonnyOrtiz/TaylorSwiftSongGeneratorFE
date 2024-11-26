@@ -1,0 +1,54 @@
+En debian linux
+
+-Se necesita instalar mysql 
+
+sudo apt install default-mysql-server
+
+sudo mysql_secure_installation
+
+-Select options
+Enter current password for root (enter for none): [PasswordToUse]
+Switch to unix_socket authentication [Y/n] n
+Change the root password? [Y/n] n
+Remove anonymous users? [Y/n] y
+Disallow root login remotely? [Y/n] y
+Remove test database and access to it? [Y/n] y
+Reload privilege tables now? [Y/n] y
+
+
+-Install PHP MyAdmin
+sudo apt install phpmyadmin php-mbstring php-zip php-gd php-json php-curl
+
+sudo phpenmod mbstring
+sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
+
+sudo systemctl restart apache2
+
+-Acces phpmyadmin local
+http://127.0.0.1/phpmyadmin/
+
+-login with root user
+-password is the one you selected before when installing.
+
+-Inside phpmyadmin create a database with the name weblog
+
+-------------------------------------------------------------
+
+To create the tables in the database go to your project root
+First install node packages
+npm install
+
+- Install sequelize cli 
+sudo npm install sequelize-cli -g
+
+- Run command to create tables
+sequelize db:migrate
+
+
+----------------------------------------------------------------
+
+-Run the project with 
+npm start
+
+Acces the project in 
+http://127.0.0.1:3420/contacts

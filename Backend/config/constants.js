@@ -1,0 +1,19 @@
+const config = {
+  LISTENINGPORT: 3420,
+  TESTPORT: 3421,
+  USERNAMEMAXLENGTH: 50,
+  USERNAMEMINLENGTH: 3,
+  PASSWORDMAXLENGTH: 100,
+  PASSWORDUSERMAXLENGTH: 60,
+  PASSWORDMINLENGTH: 8,
+  EMAILMAXLENGTH: 100,
+  SUMMARYMAXLENGTH: 400,
+  CATEGORYMAXLENGTH: 50,
+  SALTROUNDS: 10,
+  JWTSECRETKEY: 'This-is-the-not-so-secret-key-for-jwt-signing-and-verification-please-change-it-in-production',
+  JWTEXPIRESIN: '2h', // 2*1000*60*60 = 2 hours = 7200000 milliseconds
+  JWTMAXAGE: 7200000,
+  MAXPOSTSBYPAGE: 5
+};
+
+export default config;
