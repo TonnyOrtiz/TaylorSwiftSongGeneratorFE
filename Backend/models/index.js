@@ -1,15 +1,7 @@
-import User from './user.js';
-import Post from './post.js';
-import Comment from './comment.js';
-import Category from './category.js';
-import Generate from './generate.js';
+import TaylorSwift from './taylorSwift.js';
 
 const models = {
-  User,
-  Post,
-  Comment,
-  Category,
-  Generate
+  TaylorSwift
 };
 
 Object.keys(models).forEach(modelName => {
