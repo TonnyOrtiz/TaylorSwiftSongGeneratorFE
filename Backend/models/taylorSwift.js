@@ -25,9 +25,9 @@ class TaylorSwift {
   // Generar texto usando el modelo
   static async generateSong (startString, temperature = 0.3) {
     await this.loadModelAndData();
-    const numGenerate = 300; // Número de caracteres a generar
+    const numGenerate = 600; // Número de caracteres a generar
     console.log('Start string:', startString);
-    const startStr = startString;
+    const startStr = startString + ' ';
     let inputEval = startStr.split('').map(char => {
       if (char2idx[char] === undefined) {
         throw new Error(`Character "${char}" not found in char2idx mapping.`);
@@ -35,16 +35,13 @@ class TaylorSwift {
       return char2idx[char];
     });
     inputEval = tf.expandDims(inputEval, 0); // Vectorizar la entrada
-    console.log('Input shape:', inputEval.shape);
 
     const textGenerated = [];
     model.resetStates(); // Reiniciar el estado del modelo
 
     for (let i = 0; i < numGenerate; i++) {
       const predictions = model.predict(inputEval); // Realizar la predicción
-      console.log('Predictions shape:', predictions.shape);
       const squeezedPredictions = tf.squeeze(predictions, 0); // Eliminar la dimensión de batch
-      console.log('Squeezed predictions shape:', squeezedPredictions.shape);
       const adjustedPredictions = squeezedPredictions.div(temperature); // Ajustar temperatura
 
       // Usar una distribución categórica para elegir el próximo carácter
@@ -57,10 +54,9 @@ class TaylorSwift {
 
       textGenerated.push(idx2char[predictedId]); // Convertir índice a carácter
       inputEval = tf.expandDims([predictedId], 0); // Actualizar la entrada
-      console.log('Updated input shape:', inputEval.shape);
     }
 
-    return startString + textGenerated.join('');
+    return startStr + textGenerated.join('');
   }
 }
 
