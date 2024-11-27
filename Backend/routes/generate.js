@@ -14,6 +14,7 @@ generateRouter.route('/')
   })
   .get(async (req, res, next) => {
     try {
+      console.log(req.query);
       await Generate.createSong(req, res, next);
     } catch (error) {
       console.Error(error);

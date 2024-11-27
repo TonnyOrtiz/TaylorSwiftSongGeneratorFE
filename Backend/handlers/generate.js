@@ -5,8 +5,8 @@ class GenerateHandler {
     if (req.method === 'GET') {
       try {
         // Asumiendo que los datos de entrada se reciben como arreglo JSON
-        const inputData = req.params;
-        const generatedSong = await TaylorSwift.generateSong(inputData.startString, inputData.temperature);
+        const inputData = req.query;
+        const generatedSong = await TaylorSwift.generateSong(inputData.startString);
         res.json(generatedSong);
       } catch (error) {
         console.error(error); // Log the error for debugging
