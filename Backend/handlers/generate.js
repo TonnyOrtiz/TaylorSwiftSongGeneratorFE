@@ -1,3 +1,4 @@
+import { input } from '@tensorflow/tfjs-node';
 import TaylorSwift from '../models/taylorSwift.js';
 
 class GenerateHandler {
@@ -7,7 +8,12 @@ class GenerateHandler {
         // Asumiendo que los datos de entrada se reciben como arreglo JSON
         const inputData = req.query;
         const generatedSong = await TaylorSwift.generateSong(inputData.startString);
-        res.json(generatedSong);
+        // create object response
+        const response = {
+          startString: inputData.startString,
+          song: generatedSong
+        };
+        res.json(response);
       } catch (error) {
         console.error(error); // Log the error for debugging
         res.render('post/createPost', { title: 'Crear Publicación', error: error.message });
