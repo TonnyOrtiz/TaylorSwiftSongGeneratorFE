@@ -59,7 +59,7 @@ border: none;
 padding: 12px;
 outline: none;
 box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2);
-color: white;
+color: #625548;
 font: 1,25em;
 margin: 12px;
 
@@ -86,13 +86,53 @@ margin: 12px;
   color: #61dafb;
 }
 
-.chat-log{
-
-  padding: 24px;
-  text-align: left;
-  display: flex;
-
+.chatbox-input-holder {
+  width: 90%;
 }
+
+.chat-input-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.textarea-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.chat-input-textarea {
+  width: 100%;
+  padding-right: 40px; /* Space for the send icon */
+  font-size: 16px;
+  resize: none;
+  border: 1px solid #ccc;
+  border-radius: 20px; /* Makes the textarea rounded */
+  padding: 8px 12px;
+  box-sizing: border-box;
+}
+
+.send-icon-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #007bff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.send-icon-button:hover {
+  color: #0056b3;
+}
+
+.send-icon-button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
 
 .chat-message{
   padding: 12px;
