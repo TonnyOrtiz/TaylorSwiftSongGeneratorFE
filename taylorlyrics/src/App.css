@@ -6,6 +6,8 @@
   color: #625548;
   position: absolute;
   top: 0;bottom: 0;left: 0;right: 0;
+  height: fit-content;
+  min-height: 100vh;
 }
 
 .main-body{
@@ -75,8 +77,6 @@ margin: 12px;
 }
 .chatbox{
   flex:1;
-  
-  
 }
 
 
@@ -95,6 +95,8 @@ margin: 12px;
   color: #61dafb;
 }
 .chat-container{
+  display: flex;
+  flex-direction: column;
   height: 100%;
   
 }
@@ -103,11 +105,12 @@ margin: 12px;
   flex-direction: column;
   overflow-y: auto;
   padding: 12px;
-  height: 100%;
+  flex: 1;
 }
 
 .chat-log{
   flex: 1;
+  flex-grow: 1;
 }
 .chatbox-input-holder {
   height: fit-content;
