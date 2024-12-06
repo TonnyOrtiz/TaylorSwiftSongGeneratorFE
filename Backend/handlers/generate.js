@@ -6,7 +6,7 @@ class GenerateHandler {
       try {
         // Asumiendo que los datos de entrada se reciben como arreglo JSON
         const inputData = req.query;
-        const generatedSong = await TaylorSwift.generateSong(inputData.startString, inputData.temperature);
+        const generatedSong = await TaylorSwift.generateSong(inputData.startString, parseFloat(inputData.temperature));
         // create object response
         const response = {
           startString: inputData.startString,

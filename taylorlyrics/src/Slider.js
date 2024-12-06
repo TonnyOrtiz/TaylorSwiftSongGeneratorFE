@@ -1,28 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Slider = () => {
-    const [value, setValue] = useState(0);
+const Slider = ({ temperature, setTemperature }) => {
+  const handleChange = (event) => {
+    setTemperature(parseFloat(event.target.value));
+  };
 
-    const handleChange = (event) => {
-        setValue(event.target.value);
-
-         
-    };
-
-    return (
-        <div>
-            <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-                value={value}
-                onChange={handleChange}
-            />
-            <p>Value: {value}</p>
-            
-        </div>
-    );
+  return (
+    <div>
+      <input class = "slider"
+        type="range"
+        min="0"
+        max="1"
+        step="0.01"
+        value={temperature}
+        onChange={handleChange}
+      />
+      <p>Value: {temperature.toFixed(2)}</p>
+    </div>
+  );
 };
 
 export default Slider;

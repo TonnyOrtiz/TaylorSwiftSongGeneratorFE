@@ -7,22 +7,6 @@ import Slider from './Slider';
 import './App.css';
 import './normal.css';
 
-async function request(startString, temperature) {
-  await fetch('http://localhost:3420/generate/?startString=' + startString + '&temperature=' + temperature, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then(response => {
-      console.log('Request sent');
-      console.log(response);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-}
-
 function App() {
     // Estado para los mensajes individuales
     const [messages, setMessages] = useState([]);
@@ -32,6 +16,9 @@ function App() {
     const [currentChatIndex, setCurrentChatIndex] = useState(null);
     
     const { user, logout } = useAuth(); // Extrae la información del usuario y la función de logout desde el contexto de autenticación
+
+    const [temperature, setTemperature] = useState(0);
+
   
     // Cargar chats desde localStorage al inicializar
     useEffect(() => {
@@ -41,6 +28,7 @@ function App() {
       }
     }, []);
   
+
      // Maneja el envío de un mensaje
     const handleSubmit = async (messageText) => {
       if (currentChatIndex === null) {
@@ -55,7 +43,7 @@ function App() {
       updatedChats[currentChatIndex].messages.push(newMessage);
 
       // Llama al API para generar una canción y agrega el resultado como mensaje
-      const generatedSong = await generateSong(messageText);
+      const generatedSong = await generateSong(messageText, temperature);
       if (generatedSong) {
         const songMessage = { id: Date.now(), text: generatedSong };
         updatedChats[currentChatIndex].messages.push(songMessage);
@@ -103,9 +91,9 @@ function App() {
     };
 
     // Realiza una solicitud al API para generar una canción
-    const generateSong = async (startString) => {
+    const generateSong = async (startString, temper) => {
       try {
-        const response = await fetch(`http://localhost:3420/generate/?startString=${encodeURIComponent(startString)}`);
+        const response = await fetch(`http://localhost:3420/generate/?startString=${encodeURIComponent(startString)}&temperature=${encodeURIComponent(temper)}`);
         if (!response.ok) {
           throw new Error(`Error al generar la canción: ${response.statusText}`);
         }
@@ -118,13 +106,12 @@ function App() {
         return null;
       }
     };
-
     // Aquí iría el return con el HTML
   return (
     <div className="App">
       <div className="topnav">
         <div className="header-title">Chat with Taylor Swift</div>
-        <Slider />
+        <Slider temperature={temperature} setTemperature={setTemperature} />
         <div className="header-user">
           {user ? (
             <>
