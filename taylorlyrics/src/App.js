@@ -6,8 +6,8 @@ import ChatInput from './components/ChatInput';
 import './App.css';
 import './normal.css';
 
-async function request(startString) {
-  await fetch('http://localhost:3420/generate/?startString=' + startString, {
+async function request(startString, temperature) {
+  await fetch('http://localhost:3420/generate/?startString=' + startString + '&temperature=' + temperature, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

@@ -16,6 +16,13 @@ const ChatInput = ({ onSubmit }) => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault(); // Prevent adding a new line
+      handleSubmit(e);    // Submit the message
+    }
+  };
+
   return (
     <div className="chatbox-input-holder">
       <form onSubmit={handleSubmit} className="chat-input-form">
@@ -25,6 +32,7 @@ const ChatInput = ({ onSubmit }) => {
             placeholder="Type your message here"
             value={inputValue}
             onChange={handleInputChange}
+            onKeyDown={handleKeyDown} // Handle Enter key
             rows="1"
           />
           <button type="submit" className="send-icon-button">
@@ -37,3 +45,4 @@ const ChatInput = ({ onSubmit }) => {
 };
 
 export default ChatInput;
+

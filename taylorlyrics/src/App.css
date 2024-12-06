@@ -31,15 +31,28 @@
   
   .side-menu-button{
     padding: 12px;
-    border: 1px solid #ecebe7;
-    border-radius: 5px;
     text-align: left;
+    background-color: #ECEBE7;
   }
   
   .side-menu-button:hover{
-    background-color: #ebe5e5ef
+    background-color: #B10707;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
   }
 
+  .past-chat-button{
+    padding: 12px;
+    border: 1px solid #ecebe7;
+    border-radius: 5px;
+    text-align: left;
+    padding-left: 50px;
+  }
+  .past-chat-button:hover{
+    background-color: #d3d3d3;
+    cursor: pointer;
+  }
 
 .App-logo {
   height: 40vmin;
@@ -145,7 +158,7 @@ margin: 12px;
 }
 
 .send-icon-button {
-  padding-top: 10px;
+  padding-top: 6px;
   position: relative;
   background: none;
   border: none;
@@ -156,8 +169,8 @@ margin: 12px;
   cursor: pointer;
   align-self: center;
   vertical-align: middle;
-  height: 100%;
-  width: auto ;
+  height: 44px;
+  width: 44px ;
 }
 
 .topnav {
@@ -221,19 +234,23 @@ margin: 12px;
 
 .chat-message:nth-child(even) {
   padding: 20px;
+  margin-bottom: 20px;
   text-align: center;
   background-color: white;
   align-self: flex-end;
   width: fit-content;
   margin-right: 8%;
+  margin-left: 8%;
   border-radius: 10px;
 }
 
 .chat-message:nth-child(odd) {
   padding: 20px;
+  margin-bottom: 20px;
   background-color: #8e1111;
   color: white;
   margin-left: 8%;
+  margin-right: 8%;
   width: fit-content;
   border-radius: 10px;
   align-self: flex-start;
