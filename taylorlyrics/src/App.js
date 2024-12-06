@@ -29,6 +29,8 @@ function App() {
     const [chats, setChats] = useState([]);
     // Índice del chat actual
     const [currentChatIndex, setCurrentChatIndex] = useState(null);
+    
+    const { user, logout } = useAuth(); // Extrae la información del usuario y la función de logout desde el contexto de autenticación
   
     // Cargar chats desde localStorage al inicializar
     useEffect(() => {
