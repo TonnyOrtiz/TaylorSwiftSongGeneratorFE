@@ -149,6 +149,54 @@ margin: 12px;
   cursor: pointer;
 }
 
+.topnav {
+  display: flex;
+  justify-content: space-between; /* Alinea los elementos hijos a los extremos */
+  align-items: center; /* Centra verticalmente los elementos hijos */
+  padding: 10px;
+
+
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+}
+
+.header-user .button {
+  background-color: #B10707;
+  color: #fff;
+  font-size: 12px;
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-left: 10px; 
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.container button{
+
+  background-color: #B10707;
+  color: #fff;
+  font-size: 12px;
+  padding: 10px 45px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
 .send-icon-button:hover {
   color: #F40D0C;
 }
