@@ -6,6 +6,7 @@ import Sidebar from './components/SideBar'; // Import the Sidebar component
 import ChatLog from './components/ChatLog';
 import ChatInput from './components/ChatInput';
 
+
 async function request(startString){
   await fetch('http://localhost:3420/generate/?startString='+startString, {
     method: 'GET',
