@@ -165,7 +165,10 @@ margin: 12px;
   padding: left 40px right 40px;
 }
 
-.mesagge{}
+.message {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
 
 @keyframes App-logo-spin {
   from {

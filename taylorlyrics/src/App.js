@@ -39,26 +39,35 @@ function App() {
       }
     }, []);
   
-    // Maneja el envío de un mensaje
-    const handleSubmit = (messageText) => {
+     // Maneja el envío de un mensaje
+    const handleSubmit = async (messageText) => {
       if (currentChatIndex === null) {
         alert('Por favor, selecciona un chat primero.');
         return;
       }
-  
+
       const newMessage = { id: Date.now(), text: messageText };
-  
+
       // Actualizar el log de mensajes en el chat actual
       const updatedChats = [...chats];
       updatedChats[currentChatIndex].messages.push(newMessage);
+
+      // Llama al API para generar una canción y agrega el resultado como mensaje
+      const generatedSong = await generateSong(messageText);
+      if (generatedSong) {
+        const songMessage = { id: Date.now(), text: generatedSong };
+        updatedChats[currentChatIndex].messages.push(songMessage);
+      }
+
       setChats(updatedChats);
-  
+
       // Guardar en localStorage
       saveChatsToLocalStorage(updatedChats);
-  
-      // Actualizar el estado local de mensajes (opcional)
+
+      // Actualizar el estado local de mensajes
       setMessages(updatedChats[currentChatIndex].messages);
     };
+
   
     // Maneja la selección de un chat existente
     const handleSelectChat = (index) => {
@@ -90,9 +99,25 @@ function App() {
     const saveChatsToLocalStorage = (chats) => {
       localStorage.setItem('chats', JSON.stringify(chats));
     };
-  
+
+    // Realiza una solicitud al API para generar una canción
+    const generateSong = async (startString) => {
+      try {
+        const response = await fetch(`http://localhost:3420/generate/?startString=${encodeURIComponent(startString)}`);
+        if (!response.ok) {
+          throw new Error(`Error al generar la canción: ${response.statusText}`);
+        }
+        const data = await response.json();
+        var temp = data.song.replace(/\\r\\n/g, '\n').replace(/\\"/g, '"');
+        console.log(temp);
+        return temp;
+      } catch (error) {
+        console.error(error);
+        return null;
+      }
+    };
+
     // Aquí iría el return con el HTML
-  
   return (
     <div className="App">
       <div className='topnav'>
