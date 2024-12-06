@@ -13,7 +13,7 @@ class GenerateHandler {
           startString: inputData.startString,
           song: generatedSong
         };
-        res.json(response);
+        res.status(200).json(response);
       } catch (error) {
         console.error(error); // Log the error for debugging
         res.render('post/createPost', { title: 'Crear Publicación', error: error.message });
