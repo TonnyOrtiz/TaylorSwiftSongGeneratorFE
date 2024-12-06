@@ -3,6 +3,7 @@ import { useAuth } from './AuthContext'; // Importa el contexto de autenticació
 import Sidebar from './components/SideBar';
 import ChatLog from './components/ChatLog';
 import ChatInput from './components/ChatInput';
+import Slider from './Slider';
 import './App.css';
 import './normal.css';
 
@@ -123,6 +124,7 @@ function App() {
     <div className="App">
       <div className="topnav">
         <div className="header-title">Chat with Taylor Swift</div>
+        <Slider />
         <div className="header-user">
           {user ? (
             <>
