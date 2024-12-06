@@ -1,1 +1,0 @@
-sequelize model:generate --name Post --attributes titulo:string,autor:

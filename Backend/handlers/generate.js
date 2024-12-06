@@ -1,4 +1,3 @@
-import { input } from '@tensorflow/tfjs-node';
 import TaylorSwift from '../models/taylorSwift.js';
 
 class GenerateHandler {
@@ -7,7 +6,7 @@ class GenerateHandler {
       try {
         // Asumiendo que los datos de entrada se reciben como arreglo JSON
         const inputData = req.query;
-        const generatedSong = await TaylorSwift.generateSong(inputData.startString);
+        const generatedSong = await TaylorSwift.generateSong(inputData.startString, inputData.temperature);
         // create object response
         const response = {
           startString: inputData.startString,
