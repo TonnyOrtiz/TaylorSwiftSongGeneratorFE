@@ -17,7 +17,7 @@
 
 .sidemenu{
 
-width: 240px;
+width: 250px;
 border: 1px solid #d3d3d3;
 }
 
@@ -50,6 +50,7 @@ padding-right: 12px;
   }
 }
 
+
 .chat-input-holder{
   padding: 12px;
   position: absolute ;
@@ -67,17 +68,15 @@ border: none;
 padding: 12px;
 outline: none;
 box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2);
-color: black;
+color: #625548;
 font: 1,25em;
 margin: 12px;
 
 }
 .chatbox{
   flex:1;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  bottom: 0;
+  
+  
 }
 
 
@@ -95,16 +94,70 @@ margin: 12px;
 .App-link {
   color: #61dafb;
 }
-
-.chat-log{
-
-  padding: 24px;
-  text-align: left;
+.chat-container{
+  height: 100%;
+  
+}
+.current-chat{
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  overflow-y: auto;
+  padding: 12px;
+  height: 100%;
+}
+
+.chat-log{
+  flex: 1;
+}
+.chatbox-input-holder {
+  height: fit-content;
+  margin: 3%;
+  
+
 
 }
+
+.chat-input-form {
+  align-items: center;
+}
+
+.textarea-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.chat-input-textarea {
+  width: 100%;
+  padding-right: 40px; /* Space for the send icon */
+  font-size: 16px;
+  resize: none;
+  border: 1px solid #ccc;
+  border-radius: 20px; /* Makes the textarea rounded */
+  padding: 8px 12px;
+  box-sizing: border-box;
+}
+
+.send-icon-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #B10707;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.send-icon-button:hover {
+  color: #F40D0C;
+}
+
+.send-icon-button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
 
 .chat-message{
   padding: 12px;
@@ -112,11 +165,7 @@ margin: 12px;
   padding: left 40px right 40px;
 }
 
-.message{
-  padding: 12px;
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
+.mesagge{}
 
 @keyframes App-logo-spin {
   from {

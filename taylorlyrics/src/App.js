@@ -1,10 +1,58 @@
 import logo from './logo.svg';
 import './App.css';
 import  './normal.css'
-import { useState } from 'react';
+import React,{ useState } from 'react';
+import Sidebar from './components/SideBar'; // Import the Sidebar component
+import ChatLog from './components/ChatLog';
+import ChatInput from './components/ChatInput';
 
+async function request(startString){
+  await fetch('http://localhost:3420/generate/?startString='+startString, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  }).then(response => {
+    console.log('Request sent');
+    console.log(response);
+    /* response.json(); */
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
 
 function App() {
+
+  const [chats, setChats] = useState([]);
+  const [messages, setMessages] = useState([]);
+  const [currentChatIndex, setCurrentChatIndex] = useState(null);
+
+  // Function to start a new chat
+  const handleNewChat = () => {
+    // Save current messages as a past chat if there are messages
+    if (messages.length > 0) {
+      setChats((prevChats) => [...prevChats, messages]);
+    }
+
+    // Clear the current messages for the new chat
+    setMessages([]);
+    setCurrentChatIndex(chats.length); // Set to the next chat index (new chat)
+  };
+
+  // Function to handle message submission
+  const handleSubmit = (message) => {
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { id: Date.now(), text: message },
+    ]);
+  };
+
+  // Function to switch to a past chat
+  const handleSelectChat = (index) => {
+    setCurrentChatIndex(index);
+    setMessages(chats[index]); // Set the messages for the selected past chat
+  };
   const [inputText, setInputText] = useState('');
   const [chatLog, setChatLog] = useState([]);
   const [data, setData] = useState(null);
@@ -18,44 +66,6 @@ function App() {
       handleSubmit();
     }
   };
-  const handleSubmit = () => {
-    let startStr =inputText;
-    setChatLog([...chatLog, inputText]);
-    setInputText('');
-
-    // Aquí se enviaría el mensaje al servidor con fetch async
-    let response = fetch('http://localhost:3420/generate/?startString='+startStr, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      mode: 'no-cors'
-    }).then(response => {
-      console.log('Request sent');
-      response.json();
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-
-    /* fetch('http://localhost:3420/generate/?startString='+startStr,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(response => response.json())
-      .then(json => setData(json))
-      .catch(error => console.error(error)); */
-
-    // Aquí se recibiría la respuesta del servidor y se añadiría al chat
-    response.then(data => {
-      setChatLog([...chatLog, data]);
-    });
-
-
-  };
   return (
     <div className="App">
       <div className='topnav'>
@@ -63,35 +73,26 @@ function App() {
         <div className='header-user'>User: Taylor Swift</div>
       </div>
       <div className='main-body'>
-        <aside className='sidemenu'>  
-        <div className='side-menu-button'><span >+</span>New chat</div>      
-        </aside>
-        <section className='chatbox'> 
-          <div className='chat-log'>
-            <div className='chat-message'>
-                <div className='message-text'>
-                  <p>Hi! I'm Taylor Swift. I'm here to help you write a song. Type the starting words for your song and I'll generate the rest of the lyrics for you.</p>
-                </div>
-            </div>  
-            {/* Aquí se mostrarán los mensajes */
-            chatLog.map((message, index) => {
-              return (
-                <div key={index} className='chat-message'>
-                  <div className='message-text'>{message}</div>
-                </div>
-              );
-            })}          
+        
+      <Sidebar 
+        onNewChat={handleNewChat} 
+        chats={chats} 
+        onSelectChat={handleSelectChat} 
+      />
 
-          </div>
-          <div className='chatbox-input-holder'>
-            <textarea onKeyDown={handleKeyDown} 
-            value={inputText}
-            onChange={handleInputChange}
-            className='chat-input-textarea'
-            placeholder='Type the starting words for your song here'></textarea>
-          </div>
-           
-        </section>
+      <section className="chatbox">
+        <div className="chat-container">
+          {/* Display current chat */}
+          {currentChatIndex !== null && (
+            <div className="current-chat">
+              <ChatLog messages={messages} />
+              <ChatInput onSubmit={handleSubmit} />
+            </div>
+          )}
+        </div>
+        
+      </section>
+      
       </div>
     </div>
   );
