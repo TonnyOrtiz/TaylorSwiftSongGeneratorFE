@@ -98,7 +98,9 @@ margin: 12px;
   display: flex;
   flex-direction: column;
   height: 100%;
-  
+  background-image: url(/public/Albums.webp);
+  background-size: 50%;
+  background-repeat: repeat;
 }
 .current-chat{
   display: flex;
@@ -111,49 +113,56 @@ margin: 12px;
 .chat-log{
   flex: 1;
   flex-grow: 1;
+  flex-direction: column;
+  display: flex;
 }
 .chatbox-input-holder {
   height: fit-content;
-  margin: 3%;
-  
-
-
+  margin: 1% 2%;
+  display: flex;
+  flex-direction: row;
 }
 
 .chat-input-form {
   align-items: center;
+  flex: 1;
 }
 
 .textarea-wrapper {
   position: relative;
-  width: 100%;
+  display: flex;
+  align-items: stretch;
 }
 
 .chat-input-textarea {
-  width: 100%;
-  padding-right: 40px; /* Space for the send icon */
+  margin: 0;
   font-size: 16px;
   resize: none;
   border: 1px solid #ccc;
   border-radius: 20px; /* Makes the textarea rounded */
-  padding: 8px 12px;
-  box-sizing: border-box;
+  flex: 1;
+  margin-right: 15px;
 }
 
 .send-icon-button {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+  padding-top: 10px;
+  position: relative;
   background: none;
   border: none;
-  color: #B10707;
-  font-size: 20px;
+  background-color: #B10707;
+  color:white;
+  border-radius: 100%;
+  font-size: 30px;
   cursor: pointer;
+  align-self: center;
+  vertical-align: middle;
+  height: 100%;
+  width: auto ;
 }
 
 .send-icon-button:hover {
-  color: #F40D0C;
+  background-color: #F40D0C;
+  color: white;
 }
 
 .send-icon-button:disabled {
@@ -162,15 +171,37 @@ margin: 12px;
 }
 
 
-.chat-message{
-  padding: 12px;
-  display: flex;
-  padding: left 40px right 40px;
+.chat-message:nth-child(even) {
+  padding: 20px;
+  text-align: center;
+  background-color: white;
+  align-self: flex-end;
+  width: fit-content;
+  margin-right: 8%;
+  border-radius: 10px;
 }
 
-.message {
+.chat-message:nth-child(odd) {
+  padding: 20px;
+  background-color: #8e1111;
+  color: white;
+  margin-left: 8%;
+  width: fit-content;
+  border-radius: 10px;
+  align-self: flex-start;
+}
+
+.message{
   white-space: pre-wrap;
   word-wrap: break-word;
+}
+.message:nth-child(even){
+  align-self: flex-end;
+  
+
+}
+.message:nth-child(odd){
+  align-self: flex-end;
 }
 
 @keyframes App-logo-spin {

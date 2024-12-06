@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaArrowRight } from 'react-icons/fa'; // Import the arrow icon
+import { IoIosSend } from "react-icons/io";
 
 const ChatInput = ({ onSubmit }) => {
   const [inputValue, setInputValue] = useState('');
@@ -28,7 +28,7 @@ const ChatInput = ({ onSubmit }) => {
             rows="1"
           />
           <button type="submit" className="send-icon-button">
-            <FaArrowRight />
+            <IoIosSend />
           </button>
         </div>
       </form>
